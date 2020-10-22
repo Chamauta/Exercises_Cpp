@@ -1,37 +1,38 @@
-// Deitel_Chapter_04_2020.cpp //
+// Deitel_Chapter_04_2020.cpp 
+// Oct 22, 2020 //
 
 #include <iostream>
 using namespace std;
 
 //================================================= function prototypes =========================================//
-void	largest();			//  4.17
-void	twoLargest(); 		//	4.19
-void	palindrome();		//	4.26
-void	binToDec();			//	4.27
-void	checkboard();		//	4.28
-void	circle(int);		//	4.3
-void	anyTriangle();		//	4.32
-void	rightTriangle();	//	4.33
-double	factorial(double);	//	4.34a
-double	e(int);				//	4.34b
-double	eX(double);			//	4.34c
+void	largest();          // 4.17
+void	twoLargest();       // 4.19
+void	palindrome();       // 4.26
+void	binToDec();         // 4.27
+void	checkerboard();     // 4.28
+void	circle(int);        // 4.3
+void	anyTriangle();      // 4.32
+void	rightTriangle();    // 4.33
+double	factorial(double);  // 4.34a
+double	e(int);             // 4.34b
+double	eX(double);         // 4.34c
 int		reverseOrder(int);	
 
 //================================================== function calls =============================================//
 
 int main()
 {
-    //rightTriangle(); 
-    //anyTriangle();
-    //factorial(5);
-    //e(10);
-    //eX(5);
-    //circle(10);
-    //checkboard();
-    //largest();
-    //twoLargest();
-    //palindrome();
-    //binToDec();
+    //rightTriangle();      //	4.33 
+    //anyTriangle();        //	4.32
+    //factorial(5);         //	4.34a
+    //e(10);                //	4.34b
+    //eX(5);                //	4.34c                
+    //circle(10);           //	4.3
+    //checkerboard();       //	4.28
+    //largest();            //  4.17
+    //twoLargest();         //	4.19
+    //palindrome();         //	4.26
+    //binToDec();           //	4.27 
 }
 
 //================================================= function definitions ========================================//
@@ -135,7 +136,9 @@ void circle(int r)
     std::cout << "circle's circumference = " << circumference << std::endl << std::endl;
 }
 
-void checkboard()
+// function to print checkerboard pattern
+
+void checkerboard()
 {
     unsigned int col;  // do not initialize yet. column counter has to start at 1 with every row
     unsigned int row{ 1 };
@@ -156,6 +159,8 @@ void checkboard()
     std::cout << std::endl;
 }
 
+// function to find the largest of 10 integers entered by user
+
 void largest()
 {
     unsigned int counter{ 1 };
@@ -172,6 +177,8 @@ void largest()
     }
     std::cout << "\nThe largest number is: " << largest << std::endl << std::endl;
 }
+
+// function to find 2 largest of 10 numbers entered by user
 
 void twoLargest()
 {
@@ -233,6 +240,8 @@ void twoLargest()
     in short only one of any "else if" ladder will get executed.*/
 }
 
+// function to determine if number entered by user is a palindrome
+
 void palindrome()
 {
     int number;
@@ -266,6 +275,8 @@ void palindrome()
     cout << endl;
 }
 
+// generic function to reverse digits of a number
+
 int reverseOrder(int number)
 {
     double magnitude = 0.1;
@@ -289,6 +300,8 @@ int reverseOrder(int number)
 
     return reversed;
 }
+
+// function to convert a binary number to decimal
 
 // convert a binary to decimal
 
