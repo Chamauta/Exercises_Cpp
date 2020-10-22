@@ -35,9 +35,9 @@ int main()
     //binToDec();           //	4.27 
 }
 
-//================================================= function definitions ========================================//
+//======================================= function definitions =======================================//
 
-// function to determine if sides make a right triangle
+//======================= function to determine if sides make a right triangle ========================//
 
 void rightTriangle() // function definition
 {
@@ -53,7 +53,7 @@ void rightTriangle() // function definition
         std::cout << x << "," << y << "," << z << " does not form a right triangle" << std::endl << std::endl;
 }
 
-// function to determine if sides make any triangle
+//========================== function to determine if sides make any triangle ==========================//
 
 void anyTriangle() // function definition
 {
@@ -69,7 +69,7 @@ void anyTriangle() // function definition
         std::cout << x << "," << y << "," << z << " does not form a triangle" << std::endl << std::endl;
 }
 
-// function to find the factorial of a number
+//============================= function to find the factorial of a number =============================//
 
 double factorial(double j)
 {
@@ -86,7 +86,7 @@ double factorial(double j)
     return fact;
 }
 
-// function to approximate e
+//======================================== function to approximate e ========================================//
 
 double e(int j)
 {
@@ -103,7 +103,7 @@ double e(int j)
     return euler;
 }
 
-// function to aproximate e^x
+//======================================== function to aproximate e^x ========================================//
 
 double eX(double x)
 {
@@ -122,7 +122,7 @@ double eX(double x)
     return eulerX;
 }
 
-// function circumference
+//======================================== function circumference ========================================//
 
 void circle(int r)
 {
@@ -136,7 +136,7 @@ void circle(int r)
     std::cout << "circle's circumference = " << circumference << std::endl << std::endl;
 }
 
-// function to print checkerboard pattern
+//================================ function to print checkerboard pattern ================================//
 
 void checkerboard()
 {
@@ -159,7 +159,7 @@ void checkerboard()
     std::cout << std::endl;
 }
 
-// function to find the largest of 10 integers entered by user
+//========================== function to find the largest of 10 integers entered by user ==========================//
 
 void largest()
 {
@@ -178,7 +178,7 @@ void largest()
     std::cout << "\nThe largest number is: " << largest << std::endl << std::endl;
 }
 
-// function to find 2 largest of 10 numbers entered by user
+//============================== function to find 2 largest of 10 numbers entered by user ==============================//
 
 void twoLargest()
 {
@@ -240,7 +240,7 @@ void twoLargest()
     in short only one of any "else if" ladder will get executed.*/
 }
 
-// function to determine if number entered by user is a palindrome
+//============================== function to determine if number entered by user is a palindrome ==============================//
 
 void palindrome()
 {
@@ -275,7 +275,7 @@ void palindrome()
     cout << endl;
 }
 
-// generic function to reverse digits of a number
+//===================================== generic function to reverse digits of a number =====================================//
 
 int reverseOrder(int number)
 {
@@ -301,7 +301,7 @@ int reverseOrder(int number)
     return reversed;
 }
 
-// function to convert a binary number to decimal
+//======================================== function to convert a binary number to decimal ========================================//
 
 // convert a binary to decimal
 
