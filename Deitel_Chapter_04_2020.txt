@@ -1,0 +1,316 @@
+// Deitel_Chapter_04_2020.cpp //
+
+#include <iostream>
+using namespace std;
+
+//================================================= function prototypes =========================================//
+void	largest();			//  4.17
+void	twoLargest(); 		//	4.19
+void	palindrome();		//	4.26
+void	binToDec();			//	4.27
+void	checkboard();		//	4.28
+void	circle(int);		//	4.3
+void	anyTriangle();		//	4.32
+void	rightTriangle();	//	4.33
+double	factorial(double);	//	4.34a
+double	e(int);				//	4.34b
+double	eX(double);			//	4.34c
+int		reverseOrder(int);	
+
+//================================================== function calls =============================================//
+
+int main()
+{
+    //rightTriangle(); 
+    //anyTriangle();
+    //factorial(5);
+    //e(10);
+    //eX(5);
+    //circle(10);
+    //checkboard();
+    //largest();
+    //twoLargest();
+    //palindrome();
+    //binToDec();
+}
+
+//================================================= function definitions ========================================//
+
+// function to determine if sides make a right triangle
+
+void rightTriangle() // function definition
+{
+    double x, y, z;
+    std::cout << "Determine if sides from a right triangle" << std::endl;
+    std::cout << "========================================" << std::endl;
+    std::cout << "Enter 3 numbers: ";
+    std::cin >> x >> y >> z;
+
+    if ((x * x) + (y * y) == (z * z))
+        std::cout << x << "," << y << "," << z << " forms a right triangle" << std::endl;
+    else
+        std::cout << x << "," << y << "," << z << " does not form a right triangle" << std::endl << std::endl;
+}
+
+// function to determine if sides make any triangle
+
+void anyTriangle() // function definition
+{
+    double x, y, z;
+    std::cout << "Determine if sides from any triangle" << std::endl;
+    std::cout << "====================================" << std::endl;
+    std::cout << "Enter 3 numbers: ";
+    std::cin >> x >> y >> z;
+
+    if (x + y > z)
+        std::cout << x << "," << y << "," << z << " forms a triangle" << std::endl << std::endl;
+    else
+        std::cout << x << "," << y << "," << z << " does not form a triangle" << std::endl << std::endl;
+}
+
+// function to find the factorial of a number
+
+double factorial(double j)
+{
+    double fact{ j };
+    int i{ 1 };
+
+    while (i < j)
+    {
+        fact *= (j - i); // 5*(5-1); 20*(5-2); 60*(5-3);  60(2)
+        ++i;
+        //std::cout << j << " " << i << " " << fact << std::endl;
+    }
+    //std::cout << "\nFactorial = " << fact << std::endl;
+    return fact;
+}
+
+// function to approximate e
+
+double e(int j)
+{
+    double euler{ 1 };
+    int i{ 1 };
+
+   while (i < j)
+    {
+        euler += ( 1 / static_cast<double>(factorial(i)) ); // 1 + 1/1; 2 + 1/2; 2.5 + 1/6; ...
+        ++i;
+        //std::cout << i << " " << factorial(i) << " " << euler << std::endl;
+    }
+    std::cout << "e  = " << euler << std::endl;
+    return euler;
+}
+
+// function to aproximate e^x
+
+double eX(double x)
+{
+    double eulerX { 1 };
+    unsigned int i { 1 };
+    double base { x }; // type "base" as double since x is double
+    
+    while (i <= 20) // number of terms (interations)
+    {
+        eulerX += (x) / factorial(i); // 1 + 5/1; 6 + 25/2; 18.5 + 125/6 ... e^5 = 148.413
+        ++i;
+        x *= (base);
+        //std::cout << i << " " << eulerX << " " << x << " "  << factorial(i) << " " << (x) / factorial(i) << " " <<  std::endl;
+    }
+    std::cout << "e " << "to the power of " << base << " = " << eulerX << std::endl;
+    return eulerX;
+}
+
+// function circumference
+
+void circle(int r)
+{
+    const double pi = 3.14159;
+    double area = pi * r * r;
+    int diameter = 2 * r;
+    double circumference = 2 * pi * r;
+    
+    std::cout << "circle's diamenter = " << diameter << std::endl;
+    std::cout << "circle's area = " << area << std::endl;
+    std::cout << "circle's circumference = " << circumference << std::endl << std::endl;
+}
+
+void checkboard()
+{
+    unsigned int col;  // do not initialize yet. column counter has to start at 1 with every row
+    unsigned int row{ 1 };
+
+    while (row <= 8)
+    {    
+        col = 1; // start column counter
+        while (col <= 8)
+        {
+            if (row % 2 == 0 && col == 1)
+                std::cout << " ";
+            std::cout << "* ";
+            ++col;
+        }        
+        ++row;
+        std::cout << std::endl;
+    }
+    std::cout << std::endl;
+}
+
+void largest()
+{
+    unsigned int counter{ 1 };
+    int number;
+    int largest{ 0 };
+
+    while (counter <= 10)
+    {
+        std::cout << "Enter a positive number: ";
+        std::cin >> number;
+        ++counter;
+        if (number > largest)
+            largest = number;
+    }
+    std::cout << "\nThe largest number is: " << largest << std::endl << std::endl;
+}
+
+void twoLargest()
+{
+    double number;
+    unsigned int counter{ 1 };
+    double largest;
+    double nextLargest;
+
+    cout << "Enter a number, then press 'Enter': "; // important: initialize largest and nextLargest to 1st entered number (outside the loop)
+    cin >> number;
+    largest = number;
+    nextLargest = number;
+
+    while (counter < 10)
+    {
+        cout << "Enter a number, then press 'Enter': ";
+        cin >> number;
+        
+
+        if (number >= largest)
+        {
+            nextLargest = largest;
+            largest = number;
+        }
+        else if (number > nextLargest) // C++ always associates an else with the immediately preceding if
+            nextLargest = number;   
+
+        ++counter;
+    }
+
+    cout << "\nThe largest number in the list is: " << largest << endl;
+    cout << "The 2nd largest number in the list is: " << nextLargest << endl << endl;
+
+
+   /*   1. Create and initialize two variables(largest, nextLargest) to track the two numbers.
+        2. Set up a while loop that will get the next number from the user; if there are no more numbers, exit loop.
+        3. Enter a number and compare that number to largest.
+        - If number is greater than largest, move the old largest to nextLargest and replace largest with the new number
+        - If number is not greater than largest, compare number to nextLargest
+        - If number is greater than nextLargest, replace nextLargest with the new number
+        - If number is not greater than nextLargest, do nothing and continue with the loop
+        4. When loop is done, print largest, nextLargest, outside the loop.
+        
+        Note:  Separate if...if statements and if...else if are not the same! 
+        For individual, ifs, all of the ifs will be executed if they evaluate to true.
+        With if...else, if the first "if" is true, the other "else ifs" won't be executed, even if they do evaluate to true. 
+        
+        if(true)
+            executes
+        if(true)
+            executes // no matter how many ifs you have
+
+    while with if and else if
+
+        if(true)
+            executes
+        else if(true) // system doesn't checks for this once if gets true
+
+    in short only one of any "else if" ladder will get executed.*/
+}
+
+void palindrome()
+{
+    int number;
+    double magnitude = 0.1;
+    int reversed = 0;
+        
+    cout << "Enter a number: ";
+    cin >> number; 
+    cout << "Reversed order: ";
+
+    int temp = number;
+    int original = number;
+
+    while (temp != 0) // find the number of digits in the number (used to find the order of magnitude)
+    {
+        temp /= 10; // used as counter
+        magnitude *= 10; // power of 10
+    }    
+    
+    while (number != 0)
+    {
+        cout << number%10; // consecutively prints rightmost digit, 
+        reversed = reversed + (number % 10) * magnitude; // make a number out of digits in reverse order
+        number /= 10; // remove the rightmost digit
+        magnitude /= 10; // scale down magnitude by an order of 10 with each pass  
+    }      
+    
+    cout << endl;      
+
+    original == reversed ? cout << "Numbers are palindromes" : cout << "Numbers are not palindromes";
+    cout << endl;
+}
+
+int reverseOrder(int number)
+{
+    double magnitude = 0.1;
+    int reversed = 0;
+
+    int temp = number;
+    int original = number;
+
+    while (temp != 0) // find the number of digits in the number (used to find the order of magnitude)
+    {
+        temp /= 10; // used as counter
+        magnitude *= 10; // power of 10
+    }
+
+    while (number != 0)
+    {
+        reversed = reversed + (number % 10) * magnitude; // make a number out of digits in reverse order
+        number /= 10; // remove the rightmost digit
+        magnitude /= 10; // scale down magnitude by an order of 10 with each pass  
+    }
+
+    return reversed;
+}
+
+// convert a binary to decimal
+
+void binToDec()
+{
+    int binNumber;
+    int decNumber = 0;
+    int powOfTwo = 1;
+    
+    cout << "Enter a binary number: ";
+    cin >> binNumber;
+    
+    int temp = binNumber;
+
+    while (temp != 0) 
+    {
+        // conditional ternary operator (?:)
+        temp == binNumber ? (powOfTwo = 1) : (powOfTwo *= 2); // "if statement" to assign powOfTwo (1, 2, 4, 8 ) and to start at 1
+        //cout << temp % 10 * powOfTwo << " " ;
+        decNumber += temp % 10 * powOfTwo; // (1101 % 10) * 1 = 1*1 = 1; (110 % 10) * 2 = 0 * 2 = 0; (11 % 10) * 4 = 1 * 4 = 4; (1 % 10) * 8 = 1 * 8 = 8
+        temp /= 10; // used remove last digit of binary number        
+    } 
+    cout << "Decimal equivalent = " << decNumber << endl << endl;
+    
+}
