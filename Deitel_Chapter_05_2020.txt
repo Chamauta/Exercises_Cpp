@@ -1,0 +1,116 @@
+// Deitel_05_2020.cpp : This file contains some exercises for chapter 5 Deitel 7th edition
+//
+
+#include <iostream>
+using namespace std;
+
+// function prototypes
+
+void summingIntegers(); // exercise 5.5
+void averagingIntegers(); // exercise 5.6
+void rectangleXY(); // exercise 5.7
+void productOfOddIntegers(); // exercise 5.9
+void findSmallestInteger(); // exercise 5.8
+
+
+int main()
+{
+    //summingIntegers(); // exercise 5.5
+    //averagingIntegers(); // exercise 5.6    
+    //rectangleXY(); // exercise 5.7
+    //productOfOddIntegers(); // exercise 5.9
+    findSmallestInteger(); // exercise 5.8
+}
+
+// function definitions
+
+void averagingIntegers() // exercise 5.6
+{
+    double number = 0;
+    double sum = 0;
+    double average = 0;
+    const int sentinel = 9999;
+
+    for (int n = 1; n != sentinel; n++)
+    {
+        cout << "Enter an integer (enter 9999 to end): ";
+        cin >> number;
+
+        if (number == sentinel)
+            break;
+        else sum += number;
+
+        average = sum / n;
+    }
+    cout << "The average for the numbers entered = " << average << endl << endl;
+}
+
+void summingIntegers() // exercise 5.5
+{
+    int number = 0;
+    int sum = 0;    
+    unsigned int n;
+
+    cout << "Enter the number of integers to add: ";
+    cin >> n;
+
+    for (int i = 1; i <= n; i++)
+    {
+        cout << "Enter an integer : ";
+        cin >> number;       
+        sum += number;        
+    }
+    cout << "The sum for the numbers entered = " << sum << endl << endl;
+}
+
+void rectangleXY() // exercise 5.7
+{
+    int x;
+    int y;
+
+    cout << "Enter two integers between 1 and 20: ";
+    cin >> x >> y;
+
+    for (int i = 1; i <= y; i++)
+    {
+        for (int j = 1; j <= x; j++)
+            cout << "@";
+        cout << endl;
+    }    
+}
+
+void productOfOddIntegers() // exercise 5.9
+{
+    int number;
+    int product = 1;
+
+    cout << "Enter an upper limit: ";
+    cin >> number;
+
+    for (int i = 1; i <= number; i++)
+        if (i % 2 != 0)
+            product *= i;
+    cout << "The product of odd integers from 1 to " << number << " = " << product << endl << endl;
+}
+
+void findSmallestInteger() // exercise 5.8
+{
+    int n;
+    int number = 0;
+    int smallest = 0;
+
+    cout << "Enter how many integers to enter: ";
+    cin >> n;
+
+    for (int i = 1; i <= n; i++)
+    {
+        cout << "Enter an integer: ";
+        cin >> number;
+
+        if (i == 1)
+            smallest == number;
+        else if (number < smallest)
+            smallest = number;
+    }
+    cout << "\nThe smallest number entered is: " << smallest << endl << endl;        
+}
