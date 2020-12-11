@@ -2,16 +2,40 @@
 //
 
 #include <iostream>
+#include <string>
+#include <iomanip>
+#include <cmath>
+#include <chrono>
+#include <cstdlib>
+#include <ctime>
+
 using namespace std;
+using namespace chrono;
+
 
 // function prototypes
 
 void summingIntegers(); // exercise 5.5
 void averagingIntegers(); // exercise 5.6
 void rectangleXY(); // exercise 5.7
-void productOfOddIntegers(); // exercise 5.9
 void findSmallestInteger(); // exercise 5.8
-
+void productOfOddIntegers(); // exercise 5.9
+void factorials(); // exercise 5.10
+void compoundInterest(); // exercise 5.11
+void patternsNestedForLoops01(); // exercise 5.12_a
+void patternsNestedForLoops02(); // exercise 5.12_b
+void patternsNestedForLoops03(); // exercise 5.12_c
+void patternsNestedForLoops04(); // exercise 5.12_d
+void allPatterns(); // exercise 5.12 extra credit
+void barChart(); // exercise 5.13
+void totalSales(); // exercise 5.14
+void compoundInterestCalculations(); // exercise 5.16
+int decToBin(int); // used for exercise 5.18
+void numberSystemTable(); // exercise 5.18
+void pi(); // exercise 5.19
+void pythoreanTriples(); // exercise 5.20
+void deMorgansLaw(); // exercise 5.22
+void diamondPattern01(); // exercise 5.23 & 5.24
 
 int main()
 {
@@ -19,7 +43,23 @@ int main()
     //averagingIntegers(); // exercise 5.6    
     //rectangleXY(); // exercise 5.7
     //productOfOddIntegers(); // exercise 5.9
-    findSmallestInteger(); // exercise 5.8
+    //findSmallestInteger(); // exercise 5.8
+    //patternsNestedForLoops01(); // exercise 5.12_a
+    //patternsNestedForLoops02(); // exercise 5.12_b
+    //patternsNestedForLoops03(); // exercise 5.12_c
+    //patternsNestedForLoops04(); // exercise 5.12_d
+    //allPatterns(); // exercise 5.12 extra credit
+    //diamondPattern(); // exercise 5.23
+    //diamondPattern01(); // exercise 5.23
+    //pi(); // exercise 5.19
+    //pythoreanTriples(); // exercise 5.20
+    //factorials(); // exercise 5.10
+    //barChart(); // exercise 5.13
+    //compoundInterestCalculations(); // exercise 5.16
+    //compoundInterest();
+    //numberSystemTable(); // exercise 5.18
+    //deMorgansLaw(); // exercise 5.22
+    totalSales(); // exercise 5.14
 }
 
 // function definitions
@@ -48,8 +88,8 @@ void averagingIntegers() // exercise 5.6
 void summingIntegers() // exercise 5.5
 {
     int number = 0;
-    int sum = 0;    
-    unsigned int n;
+    int sum = 0;
+    int n;
 
     cout << "Enter the number of integers to add: ";
     cin >> n;
@@ -57,8 +97,8 @@ void summingIntegers() // exercise 5.5
     for (int i = 1; i <= n; i++)
     {
         cout << "Enter an integer : ";
-        cin >> number;       
-        sum += number;        
+        cin >> number;
+        sum += number;
     }
     cout << "The sum for the numbers entered = " << sum << endl << endl;
 }
@@ -76,7 +116,7 @@ void rectangleXY() // exercise 5.7
         for (int j = 1; j <= x; j++)
             cout << "@";
         cout << endl;
-    }    
+    }
 }
 
 void productOfOddIntegers() // exercise 5.9
@@ -107,10 +147,471 @@ void findSmallestInteger() // exercise 5.8
         cout << "Enter an integer: ";
         cin >> number;
 
-        if (i == 1)
-            smallest == number;
+        if (i == 1) // set 1st iteration
+            smallest = number;
         else if (number < smallest)
             smallest = number;
     }
-    cout << "\nThe smallest number entered is: " << smallest << endl << endl;        
+    cout << "\nThe smallest number entered is: " << smallest << endl << endl;
+}
+
+void patternsNestedForLoops01() // exercise 5.12_a
+{
+    int size;
+    
+    cout << "Enter a pattern size: ";
+    cin >> size;
+    cout << endl;
+
+    for (int row = 1; row <= size; row++) // row for loop 1 , 2, 3, ... 10
+    {
+        for (int col = 1; col <= row; col++) // col for loop [1,(1)]; [2, (1, 2)]; [3, (1,2,3)]; ...; [10, (1,2,3, ... 10)]
+        {
+        cout << "*";
+        }
+        cout << endl;
+    }
+    cout << endl;
+}
+
+void patternsNestedForLoops02() // exercise 5.12_b
+{
+    int size;
+
+    cout << "Enter a pattern size: ";
+    cin >> size;
+    cout << endl;
+
+    for (int row = 1; row <= size; row++) // row for loop 1 , 2, 3, ... 10
+    {
+        for (int col = 1; (col + row) <= size + 1; col++) // col for loop [1,(1,2,3, ... 10)]; [2,(3,...9)]; [...]; [10,(1)]
+        {
+            cout << "*";
+        }
+        cout << endl;
+    }
+    cout << endl;
+}
+
+void patternsNestedForLoops03() // exercise 5.12_c
+{
+    int size;
+    
+    cout << "Enter a pattern size: ";
+    cin >> size;
+    cout << endl;
+
+   for (int row = 1; row <= size; row++) // row for loop 1 , 2, 3, ... 10
+    {
+       for (int col = 1; col <= size; col++) // col for loop [1,(1,2,3, ... 10)]; [2,(3,...9)]; [...]; [10,(1)]
+       {
+           col >= row ? cout << "*": cout << " ";
+       }
+       cout << endl;
+    }   
+   cout << endl;
+}
+
+void patternsNestedForLoops04()
+{
+    int size;
+
+    cout << "Enter a pattern size: ";
+    cin >> size;
+    cout << endl;
+
+    for (int row = 1; row <= size; row++) // row for loop 1 , 2, 3, ... 10
+    {
+        for (int col = 1; col <= size ; col++) // col for loop [1,(1,2,3, ... 10)]; [2,(3,...9)]; [...]; [10,(1)]
+        {
+            col <= (size - row) ? cout << " " : cout << "*";
+        }
+        cout << endl;
+    }
+    cout << endl;
+}
+
+void allPatterns()
+{
+    int size;   
+        
+    cout << "Enter a pattern size: ";
+    cin >> size;
+    cout << endl; 
+           
+    for (int row = 1; row <= size; row++) // row for loops 1,2,3,... 10 
+    {                                           
+        for (int col = 1; col <= row; col++) // col for loop [1,(1)]; [2, (1,2)]; [3,(1,2,3)]; ...; [10,(1,2,3, ... 10)] ==> 1st pattern
+            cout << "*" ; // notation ==> [row,(columns)]; [row,(columns)];  ... [row,(columns)]                
+               
+        for (int col = row; col <= size; col++) // filler spaces
+            cout << " " ; 
+
+        for (int col = 1; (col + row) <= (size + 1) ; col++) // col for loop [1,(1,2,3...9,10)]; [2,(1,2,...9)]; [3,(1,2,...8)]; ...; [10,(1)] ==> 2nd pattern
+            cout << "*"; 
+
+        for (int col = 1; col <= row; ++col) // filler spaces (copied from 1st pattern)
+            cout << " ";       
+           
+        for (int col = 1; col <= row; col++) // filler spaces (copied from 1st pattern)
+            cout << " "; //       
+
+        for (int col = 1; (col + row) <= (size + 1); col++) //  ==> 3rd pattern (copied from 2nd pattern)
+            cout << "*";
+
+        for (int col = 1; (col + row) <= (size + 1); col++) // filler (copied from 2nd pattern)
+            cout << " ";
+
+        for (int col = 1; col <= row; col++) // ==> 4th pattern (copied from 1st pattern)
+            cout << "*"; // 
+
+        cout << endl;
+       
+    }       
+    cout << endl;        
+}
+
+void pi() // exercise 5.19
+{
+    double numerator = 0;
+    int denominator = 0;
+    double summation = 0;
+
+    cout << "iterator" << setw(15) << "numerator" << setw(15) << "denominator" << setw(10) << "pi" << endl;
+    cout << "================================================" << endl;
+
+    for (int i = 1; i <= 100; i++)
+    {
+        numerator = -4 * pow(-1, i);
+        denominator = (2*i - 1);
+        summation += numerator / denominator;
+
+        cout << left << setw(15) << i  << setw(15) << numerator << setw(15) << denominator << setw(15) << summation << endl;
+    }    
+}
+
+void diamondPattern01() // exercise 5.23
+{
+    int size;
+    int median;    
+
+    cout << "Enter a pattern size: ";
+    cin >> size;
+    cout << endl;
+
+    auto begin = std::chrono::high_resolution_clock::now();
+
+    median = (size + 1) / 2;
+    int row = 1;
+
+    for (row; row <= size; row++)
+    {
+        int col = 1;
+        for (col; col <= size; ++col)
+        {
+            if ((row <= median) && ((row + col > median) && (col - row < median))  // asterisks for top half of diamond pattern
+                || ((row > median) && ((row - col <  median) && (row + col < 3 * median)))) // asterisks for bottom half
+                
+                cout << "*";
+            
+            // optional else if; if left out, spaces will print to the right of asterisks. runs faster when included            
+            else if (row + col >= (2 * row + median)||( row + col >= 3*median)) 
+                break; 
+
+            else
+                cout << " "; // print spaces to the left of asterisks
+        }            
+        cout << endl;        
+    }  
+
+    auto end = std::chrono::high_resolution_clock::now();
+    auto elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
+
+    cout << "Time measured:\n" << elapsed.count() * 1e-9 << endl;    
+}
+
+void pythoreanTriples()
+{
+    cout << setw(8) << "side1" << setw(16) << "side2" << setw(20) << "hypotenuse" << endl;
+    cout << "============================================" << endl;
+    for (int i = 1; i <= 500; i++) // 1st side
+    {
+        for (int j = 1; j <= 500; j++) // 2nd side
+        {
+            for (int k = 1; k <= 500; k++) // hypotenuse
+            {
+                if ((i * i) + (j * j) == (k * k))
+                    cout << setw(4) << i << " (" << i*i << ")\t" << setw(4) << j << " (" << j * j << ")\t" << setw(4) << k << " (" << k * k << ")" << endl;
+            }   
+        }  
+    }
+    cout << "============================================" << endl;
+    cout << setw(8) << "side1" << setw(16) << "side2" << setw(20) << "hypotenuse" << endl;
+    cout << endl;
+}
+
+void factorials()
+{
+    int n;
+    double factorial;
+
+    cout << "Enter a non-negative integer: ";
+    cin >> n;
+
+    cout << "\ninteger" << setw(15) << "factorial" << endl;
+    cout << "======================" << endl;
+
+    for (int j = 1; j <= n; j++)        
+    {
+        factorial = 1;
+        for (int i = j; i >= 1; i--)
+        {
+            factorial *= i;
+        }
+        cout <<  j << "\t" << setw(14) << factorial << endl;
+    }    
+    cout << endl;
+}
+
+void barChart()
+{
+    int size;
+
+    srand(static_cast<unsigned int> (time(0)));
+
+    cout << "Enter sample size: ";
+    
+    cin >> size;
+
+    cout << "Randomly generated barchart" << endl;
+    cout << "===========================" << endl << endl;
+
+    for (int i = 0; i <= size; i++)
+    {
+        int bar = rand() %100;
+        cout << setw(3) << bar <<  ": ";
+        
+        for (int j = 1; j <= bar; j++)
+            cout << "*";
+
+        cout << endl;
+    }
+}
+
+void compoundInterestCalculations() // exercise 5.16
+{
+    int amount;
+    int principal = 10000000;
+    int rate = 5;
+    int interest;
+    
+    cout << "Year" << setw(21) << "Amount on deposit" << endl;
+
+    cout <<  fixed << setprecision(2);
+   
+    for (int year = 1; year <= 10; ++year)
+    {
+       
+        amount = ((principal * (100 + rate))) ;
+        interest = (amount/100 - principal);
+        principal = principal + interest;
+        
+        int cents;
+        int dollars;
+
+        dollars = principal / 10000; // dollar amount
+        cents = ((principal % 10000) / 10 + 5) / 10; // cents; roundup to avoid truncating
+
+        cents == 0 ? cout << year << "\t" << setw(13) << dollars << ".00" << endl: // display .0 as .00
+        cout <<  year << "\t" << setw(13) << dollars << "."  <<  cents << endl;
+    }
+}
+
+void compoundInterest() // exercise 5.11
+{
+    double amount = 0.0;
+    double principal = 1000.0;
+    double rate = 0.0;
+
+    cout << fixed << setprecision(2);
+    
+    for (rate = 0.05; rate <= 0.1; rate +=0.01)
+    {
+        cout << "Rate" << setw(10) << "Year" << setw(21) << "Amount on deposit" << endl;
+        for (int year = 1; year <= 10; year++)
+        {
+            amount = principal * pow(1.0 + rate, year);
+
+            cout << rate << setw(10) << year << setw(21) << amount << endl;
+        }
+        cout << endl;        
+    }    
+    cout << endl << endl;
+}
+
+int decToBin(int number) // not an exercise
+{
+    int binNumber = 0;
+    int powOfTen;
+
+    int temp = number;
+
+    while (temp > 0)
+    {
+        // conditional ternary operator (?:)
+        temp == number ? (powOfTen = 1) : (powOfTen *= 10); // "if statement" to assign powOfTen (1, 10, 100, 1000 ) and to start at 1
+        binNumber += temp % 2 * powOfTen; //
+        temp /= 2; // divide repeatedly by 2        
+    }
+    return binNumber;
+}
+
+void numberSystemTable() // exercise 5.18
+{
+    //cout << fixed << setprecision(2);
+
+    cout << "Decimal" << setw(12) << "binary" << setw(10) << "Octal" << setw(15) << "Hexadecimal" << endl;
+    for (int number = 1; number <= 256; number++)
+    {
+        cout << setw(7) << number << setw(12) << decToBin(number) << setw(10) << oct << number << setw(15) << hex << number << dec << endl;        
+    }
+}
+
+void deMorgansLaw() // exercise 5.22
+// De Morgan's law:
+// !(P AND Q) == (!P OR !Q)
+// !(P OR Q) == (!P AND !Q)
+{
+    int x, y, a, b, g, i, j;
+
+    cout << "\nProve (!P && !Q) is equivalent to !(P || Q)" << endl << endl;
+    
+    cout << "Enter a value for x: ";
+    cin >> x;
+    cout << "Enter a value for y: ";
+    cin >> y;
+    
+    cout << "\nx = " << x << " and let " << "y = " << y << endl << endl;
+
+    cout << "!(x < 5)" << "\t!(y >= 7)" << "\t(x < 5)" << "\t\t(y >= 7)" << endl;
+    cout << "========================================================" << endl;
+    cout << boolalpha << !(x < 5) << "\t\t" << !( y >= 7 ) << "\t\t" << (x < 5) << "\t\t" << (y >= 7) << endl << endl;
+    
+    cout << "!(x < 5) && !(y >= 7):  " << (!(x < 5) && !(y >= 7)) << endl;    
+    cout << "!((x < 5) || (y >= 7)): " << !((x < 5) || (y >= 7)) << endl << endl;
+
+    cout << "\nProve !P || !Q is equivalent to !(P && Q)" << endl << endl;
+
+    cout << "Enter a value for a: ";
+    cin >> a;
+    b = a;
+    cout << "Enter a value for g: ";
+    cin >> g;
+
+    cout << "\nLet a and b = " << a << " and let " << "g = " << g << endl << endl;
+
+    cout << "!(a == b)" << "\t!(g != 5)" << "\t(a == b)" << "\t(g != 5)" << endl;
+    cout << "========================================================" << endl;
+    cout << boolalpha << !(a == b) << "\t\t" << !(g != 5) << "\t\t" << (a == b) << "\t\t" << (g != 5) << endl << endl;
+
+    cout << "!(a == b) || !(g != 5):  " << (!(a == b) || !(g != 5)) << endl;
+    cout << "!((a == b) && (g != 5)): " << !((a == b) && (g != 5)) << endl << endl;
+
+    cout << "\nProve !(P && Q) is equivalent to !P || !Q" << endl << endl;
+
+    cout << "Enter a value for x: ";
+    cin >> x;
+  
+    cout << "Enter a value for y: ";
+    cin >> y;
+
+    cout << "\nLet x = " << x << " and let " << "y = " << y << endl << endl;
+
+    cout << "(x <= 8)" << "\t(y > 4)" << "\t\t!(x <= 8)" << "\t!(y > 4)" << endl;
+    cout << "========================================================" << endl;
+    cout << boolalpha << (x <= 8) << "\t\t" << (y > 4) << "\t\t" << !(x <= 8) << "\t\t" << !(y > 4) << endl << endl;
+
+    cout << "!((x <= 8) && (y > 4)): " << !((x <= 8) && (y > 4)) << endl;
+    cout << "!(x <= 8) || !(y > 4):  " << (!(x <= 8) || !(y > 4)) << endl << endl;
+
+    cout << "\nProve !(P || Q) is equivalent to !P && !Q" << endl << endl;
+
+    cout << "Enter a value for i: ";
+    cin >> i;
+
+    cout << "Enter a value for j: ";
+    cin >> j;
+
+    cout << "\nLet i = " << i << " and let " << "j = " << j << endl << endl;
+
+    cout << "(i > 4)" << "\t\t(j <= 6)" << "\t!(i > 4)" << "\t!(j <= 6)" << endl;
+    cout << "========================================================" << endl;
+    cout << boolalpha << (i > 4) << "\t\t" << (j <= 6) << "\t\t" << !(i > 4) << "\t\t" << !(j <= 6) << endl << endl;
+
+    cout << "!((i > 4) || (j <= 6)): " << !((i > 4) || (j <= 6)) << endl;
+    cout << "!(i > 4) && !(j <= 6):  " << (!(i > 4) && !(j <= 6)) << endl << endl;
+}
+
+void totalSales() // exercise 5.14
+{
+    char product = 0;
+    int quantity; 
+    double price;
+    double retailValue = 1;
+    double totalRetailValue = 0;    
+       
+    while ( true )
+        {
+        cout << "Enter a Product number (1 to 5 or q to quit): ";        
+        cin >> product;
+        
+        if (product == 'q')
+            break;
+
+            switch (product)
+            {
+            case '1':
+                price = 2.98;
+                goto printout;
+
+            case '2':
+                price = 4.50;
+
+            case '3':
+                price = 9.98;
+                goto printout;
+
+            case '4':
+                price = 4.49;
+                goto printout;
+
+            case '5':
+                price = 6.87;
+                goto printout;                         
+
+            case '\n':
+            case '\t':
+            case ' ':
+                break;
+
+            default:
+                cout << "Incorrect input." << endl;
+                cin.clear();
+                product = 0;
+                break;
+
+            printout:            
+                cout << "Enter a quantity: ";
+                cin >> quantity;                     
+                retailValue = price * quantity;
+                cout << "Retail value: $" << retailValue << " @ " << "$" << price << " each" << endl << endl;
+                totalRetailValue += retailValue;
+                cin.clear();
+                break;
+
+            } // end of switch        
+
+        }    // end of while  
+
+    cout << "\nTotal Retail value of products sold = $" << totalRetailValue << endl << endl;
 }
