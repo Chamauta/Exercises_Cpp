@@ -597,7 +597,7 @@ void totalSales() // exercise 5.14
             default:
                 cout << "Incorrect input." << endl;
                 cin.clear();
-                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                cin.ignore(numeric_limits<streamsize>::max(), '\n'); // ignores invalid cases like '7' or 'f' or multiple character entries like 'asdfsdf'
                 break;
 
             printout:            
@@ -606,7 +606,7 @@ void totalSales() // exercise 5.14
                 while (cin.fail())
                 {
                     cin.clear();
-                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n'); // ignores invalid cases like '7' or 'f' or multiple character entries like 'asdfsdf'
                     cout << "Enter a valid quantity: ";
                     cin >> quantity;
                 }
