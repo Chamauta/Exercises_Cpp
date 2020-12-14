@@ -554,73 +554,72 @@ void deMorgansLaw() // exercise 5.22
 
 void totalSales() // exercise 5.14
 {
-    char product = 0;
-    int quantity;
+    char product;
+    int quantity; 
     double price;
     double retailValue = 1;
-    double totalRetailValue = 0;
-
-    while (true)
-    {
-        cout << "Enter a Product number (1 to 5 or q to quit): ";
+    double totalRetailValue = 0;    
+       
+    while ( true )
+        {
+        cout << "Enter a Product number (1 to 5 or q to quit): ";        
         cin >> product;
-
+        
         if (product == 'q')
             break;
 
-        switch (product)
-        {
-        case '1':
-            price = 2.98;
-            goto printout;
-
-        case '2':
-            price = 4.50;
-
-        case '3':
-            price = 9.98;
-            goto printout;
-
-        case '4':
-            price = 4.49;
-            goto printout;
-
-        case '5':
-            price = 6.87;
-            goto printout;
-
-        case '\n':
-        case '\t':
-        case ' ':
-            break;
-
-        default:
-            cout << "Incorrect input." << endl;
-            cin.clear();
-            cin.ignore();
-            product = 0;
-            break;
-
-        printout:
-            cout << "Enter a quantity: ";
-            cin >> quantity;
-            while (cin.fail())
+            switch (product)
             {
+            case '1':
+                price = 2.98;
+                goto printout;
+
+            case '2':
+                price = 4.50;
+
+            case '3':
+                price = 9.98;
+                goto printout;
+
+            case '4':
+                price = 4.49;
+                goto printout;
+
+            case '5':
+                price = 6.87;
+                goto printout;                         
+
+            case '\n':
+            case '\t':
+            case ' ':
+                break;
+
+            default:
+                cout << "Incorrect input." << endl;
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                break;
+
+            printout:            
+                cout << "Enter a quantity: ";
+                cin >> quantity;
+                while (cin.fail())
+                {
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                    cout << "Enter a valid quantity: ";
+                    cin >> quantity;
+                }
+                retailValue = price * quantity;
+                cout << "Retail value: $" << retailValue << " @ " << "$" << price << " each" << endl << endl;
+                totalRetailValue += retailValue;
                 cin.clear();
                 cin.ignore();
-                cout << "Enter a valid quantity: ";
-                cin >> quantity;                
-            }
-            retailValue = price * quantity;
-            cout << "Retail value: $" << retailValue << " @ " << "$" << price << " each" << endl << endl;
-            totalRetailValue += retailValue;
-            cin.clear();
-            cin.ignore();
-            break;
+                break;
 
-        } // end of switch        
+            } // end of switch        
 
-    }    // end of while  
+        }    // end of while  
 
     cout << "\nTotal Retail value of products sold = $" << totalRetailValue << endl << endl;
 }
