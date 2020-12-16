@@ -6,7 +6,7 @@
 #include <iomanip>
 #include <cmath>
 #include <chrono>
-#include <cstdlib>
+#include <cstdlib> // contains function prototype for rand. may cause "cout is ambiguous"
 #include <ctime>
 
 using namespace std;
@@ -34,32 +34,36 @@ int decToBin(int); // used for exercise 5.18
 void numberSystemTable(); // exercise 5.18
 void pi(); // exercise 5.19
 void pythoreanTriples(); // exercise 5.20
+void calculatingSalaries(); // exercise 5.21
 void deMorgansLaw(); // exercise 5.22
 void diamondPattern01(); // exercise 5.23 & 5.24
 
 int main()
 {
+    // calling functions
+
     //summingIntegers(); // exercise 5.5
     //averagingIntegers(); // exercise 5.6    
     //rectangleXY(); // exercise 5.7
-    //productOfOddIntegers(); // exercise 5.9
     //findSmallestInteger(); // exercise 5.8
+    //productOfOddIntegers(); // exercise 5.9
+    //factorials(); // exercise 5.10
+    //compoundInterest();  // exercise 5.11
     //patternsNestedForLoops01(); // exercise 5.12_a
     //patternsNestedForLoops02(); // exercise 5.12_b
     //patternsNestedForLoops03(); // exercise 5.12_c
     //patternsNestedForLoops04(); // exercise 5.12_d
     //allPatterns(); // exercise 5.12 extra credit
-    //diamondPattern(); // exercise 5.23
-    //diamondPattern01(); // exercise 5.23
+    //barChart(); // exercise 5.13
+    //totalSales(); // exercise 5.14
+    //compoundInterestCalculations(); // exercise 5.16
+    //numberSystemTable(); // exercise 5.18
     //pi(); // exercise 5.19
     //pythoreanTriples(); // exercise 5.20
-    //factorials(); // exercise 5.10
-    //barChart(); // exercise 5.13
-    //compoundInterestCalculations(); // exercise 5.16
-    //compoundInterest();
-    //numberSystemTable(); // exercise 5.18
+    calculatingSalaries(); // exercise 5.21
     //deMorgansLaw(); // exercise 5.22
-    totalSales(); // exercise 5.14
+    //diamondPattern01(); // exercise 5.23 & 5.24     
+    
 }
 
 // function definitions
@@ -295,7 +299,7 @@ void diamondPattern01() // exercise 5.23
     int size;
     int median;    
 
-    cout << "Enter a pattern size: ";
+    cout << "Enter a pattern size (an odd number): ";
     cin >> size;
     cout << endl;
 
@@ -314,7 +318,8 @@ void diamondPattern01() // exercise 5.23
                 
                 cout << "*";
             
-            // optional else if; if left out, spaces will print to the right of asterisks. runs faster when included            
+            // optional else if; if left out, spaces will print to the right of asterisks. 
+            // if included unnecessary spaces will not be printed and program will run faster when included            
             else if (row + col >= (2 * row + median)||( row + col >= 3*median)) 
                 break; 
 
@@ -554,13 +559,13 @@ void deMorgansLaw() // exercise 5.22
 
 void totalSales() // exercise 5.14
 {
-    char product;
+    char product = 0;
     int quantity; 
     double price;
     double retailValue = 1;
     double totalRetailValue = 0;    
        
-    while ( true )
+    while ( true && product != 'q' )
         {
         cout << "Enter a Product number (1 to 5 or q to quit): ";        
         cin >> product;
@@ -592,13 +597,16 @@ void totalSales() // exercise 5.14
             case '\n':
             case '\t':
             case ' ':
+            case 'q':
                 break;
 
-            default:
-                cout << "Incorrect input." << endl;
-                cin.clear();
-                cin.ignore(numeric_limits<streamsize>::max(), '\n'); // ignores invalid cases like '7' or 'f' or multiple character entries like 'asdfsdf'
-                break;
+            default:                
+                {
+                    cout << "Incorrect input." << endl;
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n'); // ignores invalid cases like '7' or 'f' or multiple character entries like 'asdfsdf'
+                    break;
+                }
 
             printout:            
                 cout << "Enter a quantity: ";
@@ -623,3 +631,125 @@ void totalSales() // exercise 5.14
 
     cout << "\nTotal Retail value of products sold = $" << totalRetailValue << endl << endl;
 }
+
+
+void calculatingSalaries() // exercise 5.21
+{
+    int intCode = 0;
+    double salary = 0;
+    double totalSalaries = 0;
+    double hours;
+    double hourlyWage;
+    double sales;
+    double partQuantity;
+    double wagePerPart = 11.00;
+
+    cout << "Employee\tCode" << endl;
+    cout << "====================" << endl;
+    cout << "Code 1" << "\t\tManager" << endl;
+    cout << "Code 2" << "\t\tHourly Worker" << endl;
+    cout << "Code 3" << "\t\tCommissioned Employee" << endl;
+    cout << "Code 4" << "\t\tPiece Workers" << endl << endl;
+    
+    while (true)
+    {
+        cout << "Enter an employee code (-1 to quit): ";
+        cin >> intCode;
+        //cout << intCode << endl;
+
+        if (intCode == -1)
+            break;
+
+        while (intCode == 0 || intCode > 4 ) 
+        {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "Enter a valid code: " ;
+            cin >> intCode;            
+        }
+
+        char code = '0' + intCode; // convert integer input into a char
+        //cout << code << endl;        
+
+        switch (code)
+        {
+        case '1':
+            cout << "Enter this manager's weekly salary: $";
+            cin >> salary;
+            if (cin.fail())
+                goto fail;
+            totalSalaries += salary;
+            cout << "Weekly salary earned by manager: $";
+            goto printout;
+
+        case '2':
+            cout << "Enter the weekly hours worked for this employee: ";
+            cin >> hours;
+            if (cin.fail())
+                goto fail;
+            cout << "Enter the hourly salary for this employee: $";
+            if (cin.fail())
+                goto fail;
+            cin >> hourlyWage;
+
+            if (hours <= 40)
+                salary = hours * hourlyWage;
+            else
+                salary = (40 * hourlyWage) + 1.5 * (hours - 40);
+            totalSalaries += salary;
+            cout << "Weekly salary earned by hourly work: $"; 
+            goto printout;
+
+        case '3':
+            cout << "Enter weekly sales for this commissioned employee: ";
+            cin >> sales;
+            if (cin.fail())
+                goto fail;
+            salary = 250 + (0.057 * sales);
+            totalSalaries += salary;
+            cout << "Weekly wage earned by commissions: $"; 
+            goto printout;
+
+        case '4':
+            cout << "Enter the number of parts produced by this employee: ";
+            cin >> partQuantity;
+            if (cin.fail())
+                goto fail;
+            salary = partQuantity * wagePerPart;
+            totalSalaries += salary;
+            cout << "Weekly wage earned by pieceworker: $";
+            goto printout;
+
+        case '\n':
+        case '\t':
+        case ' ':
+            break;
+
+        default:
+            cout << "Invalid entry." << endl;
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n'); // ignores invalid cases like '7' or 'f' or multiple character entries like 'asdfsdf'
+            break;
+
+        printout:
+            cout << salary << endl;
+            cout << "Payroll subtotal: $" << totalSalaries << endl << endl;
+            salary = 0;
+            cin.clear();
+            cin.ignore();
+            break;
+
+        fail:
+            while (cin.fail())
+            {
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n'); // ignores invalid cases like '7' or 'f' or multiple character entries like 'asdfsdf'
+                cout << "Invalid entry." << endl;
+                salary = 0;
+                break;
+            }
+            
+        }   // end of switch   
+    } // end of while
+    cout << "Total Salaries paid: $" << totalSalaries << endl << endl;
+}        
