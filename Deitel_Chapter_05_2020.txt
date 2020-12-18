@@ -37,6 +37,8 @@ void pythoreanTriples(); // exercise 5.20
 void calculatingSalaries(); // exercise 5.21
 void deMorgansLaw(); // exercise 5.22
 void diamondPattern01(); // exercise 5.23 & 5.24
+void removingBreak(); // exercise 5.25
+void removingContinue(); // exercise 5.27
 
 int main()
 {
@@ -60,9 +62,11 @@ int main()
     //numberSystemTable(); // exercise 5.18
     //pi(); // exercise 5.19
     //pythoreanTriples(); // exercise 5.20
-    calculatingSalaries(); // exercise 5.21
+    //calculatingSalaries(); // exercise 5.21
     //deMorgansLaw(); // exercise 5.22
-    //diamondPattern01(); // exercise 5.23 & 5.24     
+    //diamondPattern01(); // exercise 5.23 & 5.24 
+    //removingBreak(); // exercise 5.25
+    removingContinue(); // exercise 5.27
     
 }
 
@@ -651,22 +655,28 @@ void calculatingSalaries() // exercise 5.21
     cout << "Code 3" << "\t\tCommissioned Employee" << endl;
     cout << "Code 4" << "\t\tPiece Workers" << endl << endl;
     
-    while (true)
+    while (intCode != -1)
     {
         cout << "Enter an employee code (-1 to quit): ";
         cin >> intCode;
         //cout << intCode << endl;
 
+    exit:
         if (intCode == -1)
+        {
+            cout << "Program is now exiting" << endl << endl;
             break;
+        }
 
-        while (intCode == 0 || intCode > 4 ) 
+        while (intCode < -1 || intCode > 4 || intCode == 0 ) 
         {
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            cout << "Enter a valid code: " ;
-            cin >> intCode;            
-        }
+            cout << "Invalid entry (-1 to quit): " ;
+            cin >> intCode;
+            if (intCode == -1)            
+                goto exit;                
+        }        
 
         char code = '0' + intCode; // convert integer input into a char
         //cout << code << endl;        
@@ -722,11 +732,11 @@ void calculatingSalaries() // exercise 5.21
 
         case '\n':
         case '\t':
-        case ' ':
+        case ' ':        
             break;
 
         default:
-            cout << "Invalid entry." << endl;
+            cout << "Invalid entry." << endl << endl;
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(), '\n'); // ignores invalid cases like '7' or 'f' or multiple character entries like 'asdfsdf'
             break;
@@ -740,16 +750,86 @@ void calculatingSalaries() // exercise 5.21
             break;
 
         fail:
-            while (cin.fail())
+            while (cin.fail() && code != '-1')
             {
                 cin.clear();
                 cin.ignore(numeric_limits<streamsize>::max(), '\n'); // ignores invalid cases like '7' or 'f' or multiple character entries like 'asdfsdf'
-                cout << "Invalid entry." << endl;
+                cout << "Invalid entry." << endl << endl;
                 salary = 0;
                 break;
-            }
-            
+            }                   
         }   // end of switch   
     } // end of while
     cout << "Total Salaries paid: $" << totalSalaries << endl << endl;
 }        
+
+void removingBreak() // exercise 5.25
+{
+    int count = 1;
+    int escape = 0;
+      
+    // book example commented out
+   /* for (int count = 1; count <= 10; count++)
+    {
+        if (count == 5)
+            break;
+       
+        cout << count << " ";
+    } */
+
+   // exiting loop with an else statment
+    for (count; count <= 10;)
+    {
+        if (count < 5) 
+        {
+            cout << count << " ";
+            count += 1;
+            escape = count;
+        }            
+        else count += 6;        
+    }           
+  
+    cout << "\nBroke out of loop at count = " << escape << endl;
+}
+
+void removingContinue() // exercise 5.27
+{
+    int count;
+    int skipped = 0;
+
+    // book example commented out
+    /* for (count = 1; count <= 10; count++)
+    {
+        if (count == 5)
+            continue;
+
+        cout << count << " ";
+    } */
+
+    // 1st method; hard to understand
+
+    for (count = 1; count <= 10; (!((count+1) % 5 == 0 && (count + 1) != 10) ? count++ : count +=2))
+    {
+        cout << count << " ";
+    }
+
+    cout << "\n(Hard coded method to skip 5)" << endl;
+    cout << endl;
+
+    // 2nd method; using a structured equivalent
+
+    cout << "Enter integer to skip (between 1 and 10): ";
+    cin >> skipped;
+
+    for (count = 0; count < 10;)
+    {
+        count += 1;
+        if (count < skipped || count > skipped)
+        {
+            cout << count << " ";                       
+        }
+        else skipped = count;
+    }
+    cout << endl << endl;
+    cout << "Continued after skipping " << skipped << endl << endl;
+}
