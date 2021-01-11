@@ -6,7 +6,7 @@
 #include <iomanip>
 #include <cmath>
 #include <chrono>
-#include <cstdlib> // contains function prototype for rand. may cause "cout is ambiguous"
+//#include <cstdlib> // contains function prototype for rand. may cause "cout is ambiguous"
 #include <ctime>
 
 using namespace std;
@@ -39,6 +39,8 @@ void deMorgansLaw(); // exercise 5.22
 void diamondPattern01(); // exercise 5.23 & 5.24
 void removingBreak(); // exercise 5.25
 void removingContinue(); // exercise 5.27
+void peterMinuitProblem(); // exercise 5.29
+void twelveDaysXmas(); // exercise 5.28
 
 int main()
 {
@@ -66,8 +68,9 @@ int main()
     //deMorgansLaw(); // exercise 5.22
     //diamondPattern01(); // exercise 5.23 & 5.24 
     //removingBreak(); // exercise 5.25
-    removingContinue(); // exercise 5.27
-    
+    //removingContinue(); // exercise 5.27
+    //peterMinuitProblem(); // exercise 5.29   
+    twelveDaysXmas(); // exercise 5.28
 }
 
 // function definitions
@@ -285,17 +288,17 @@ void pi() // exercise 5.19
     int denominator = 0;
     double summation = 0;
 
-    cout << "iterator" << setw(15) << "numerator" << setw(15) << "denominator" << setw(10) << "pi" << endl;
+    cout << "iterator" << setw(15) << "numerator" << setw(15) << "denominator" << setw(10) << setprecision(15) << fixed << "pi" << endl;
     cout << "================================================" << endl;
-
-    for (int i = 1; i <= 100; i++)
+    
+    for (int i=1;i <= 10000; i++)
     {
         numerator = -4 * pow(-1, i);
-        denominator = (2*i - 1);
+        denominator = (2 * i - 1);
         summation += numerator / denominator;
 
-        cout << left << setw(15) << i  << setw(15) << numerator << setw(15) << denominator << setw(15) << summation << endl;
-    }    
+        cout << left << setw(15) << i << setw(15) << numerator << setw(15) << denominator << setw(15) << summation << endl;
+    }       
 }
 
 void diamondPattern01() // exercise 5.23
@@ -833,3 +836,114 @@ void removingContinue() // exercise 5.27
     cout << endl << endl;
     cout << "Continued after skipping " << skipped << endl << endl;
 }
+
+
+void peterMinuitProblem() // exercise 5.29
+{
+    double amount;
+    double principal = 24.0;
+    double rate = 0.05;    
+    
+    cout << fixed << setprecision(2);
+
+    // calculate amount on deposit for each year since 1626
+
+    for (double rate = 0.05; rate <= 0.10; rate += 0.01)
+    {
+        cout << "Year" << "\t" << "Amount on deposit" << "\t" << "interest rate: (" << rate << ")" << endl;
+        for (int year = 1; year <= 394; year += 1)
+        {
+            amount = principal * pow(1.0 + rate, year);
+            cout << setw(4) << year << setw(11) << "$" << amount << endl;
+        }
+        cout << endl;
+    }
+    cout << endl << endl;
+}
+
+void twelveDaysXmas() // exercise 5.28
+{
+    int day;
+    cout << "Enter a day (1 through 12): ";
+    cin >> day; 
+
+    while (cin.fail())
+    {
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n'); // ignores characters'
+        cout << "Invalid entry." << endl << endl;
+        break;
+    }
+
+    while (day > 12 || day < 1)
+    {
+        cout << "Incorrect day. Please enter a day (1 through 12) ";
+        cin >> day;
+    }
+   
+    cout << endl;
+
+    switch (day)
+    {
+    case 12:
+        cout << "On the twelfth day of Christmas, my true love sent to me Twelve drummers drumming," << endl;
+
+    case 11:        
+        if (day > 11)        
+            cout << "Eleven pipers piping," << endl;  
+        else cout << "On the eleventh day of Christmas, my true love sent to me Eleven pipers piping," << endl;
+
+    case 10:        
+        if (day > 10)
+            cout << "Ten lords a - leaping," << endl;
+        else cout << "On the tenth day of Christmas, my true love sent to me Ten lords a - leaping," << endl;
+
+    case 9:
+        if (day > 9)
+            cout << "Nine ladies dancing," << endl; 
+        else cout << "On the ninth day of Christmas, my true love sent to me Nine ladies dancing," << endl;
+
+    case 8:
+        if (day > 8)
+            cout << "Eight maids a - milkin," << endl; 
+        else cout << "On the eighth day of Christmas, my true love sent to me Eight maids a - milking," << endl;
+
+    case 7:
+        if (day > 7)
+            cout << "Seven swans a - swimming," << endl;  
+        else cout << "On the seventh day of Christmas, my true love sent to me Seven swans a - swimming," << endl;
+
+    case 6:
+        if (day > 6)
+            cout << "Six geese a - laying," << endl; 
+        else cout << "On the sixth day of Christmas, my true love sent to me Six geese a - laying," << endl;
+
+    case 5:
+        if (day > 5)
+            cout << "Five golden rings," << endl;
+        else cout << "On the fifth day of Christmas, my true love sent to me Five golden rings," << endl;
+
+    case 4:
+        if (day > 4)
+            cout << "Four calling birds," << endl;  
+        else cout << "On the fourth day of Christmas, my true love sent to me Four calling birds," << endl;
+
+    case 3:
+        if (day > 3)
+            cout << "Three french hens," << endl;
+        else cout << "On the third day of Christmas, my true love sent to me Three french hens," << endl;
+
+    case 2:
+        if (day > 2)
+            cout << "Two turtle doves," << endl;
+        else cout << "On the second day of Christmas, my true love sent to me Two turtle doves," << endl;
+
+    case 1:
+        if (day > 1)
+            cout << "and a partridge in a pear tree." << endl;
+        else cout << "On the first day of Christmas, my true love sent to me A partridge in a pear tree." << endl;
+        break;   
+        
+    }
+    cout << endl;
+} 
