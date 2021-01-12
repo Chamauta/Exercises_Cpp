@@ -6,7 +6,7 @@
 #include <iomanip>
 #include <cmath>
 #include <chrono>
-#include <cstdlib> // contains function prototype for rand. iffy with "cout is ambiguous warning"
+#include <cstdlib> // contains function prototype for rand. iffy with "cout is ambiguous warning". comment/uncomment if necessary
 #include <ctime>
 
 using namespace std;
@@ -15,6 +15,9 @@ using namespace chrono;
 
 // function prototypes
 
+void sumIntegers(); // exercise 5.2a 
+void printValues(); // exercise 5.2b
+void usingPow(); // exercise 5.2c
 void summingIntegers(); // exercise 5.5
 void averagingIntegers(); // exercise 5.6
 void rectangleXY(); // exercise 5.7
@@ -47,6 +50,9 @@ int main()
 {
     // calling functions
 
+    //sumIntegers(); // exercise 5.2a 
+    //printValues(); // exercise 5.2b
+    usingPow(); // exercise 5.2c
     //summingIntegers(); // exercise 5.5
     //averagingIntegers(); // exercise 5.6    
     //rectangleXY(); // exercise 5.7
@@ -61,7 +67,7 @@ int main()
     //allPatterns(); // exercise 5.12 extra credit
     //barChart(); // exercise 5.13
     //totalSales(); // exercise 5.14
-    convertGradesToPoints(); // exercise 5.15
+    //convertGradesToPoints(); // exercise 5.15
     //compoundInterestCalculations(); // exercise 5.16
     //numberSystemTable(); // exercise 5.18
     //pi(); // exercise 5.19
@@ -1005,4 +1011,49 @@ void convertGradesToPoints() // exercise 5.15
     cout << "Total gradepoint: " << (aCount * 4) + (bCount * 3) + (cCount * 2) + (dCount * 1) + (fCount * 0) << endl;
     cout << "Total exams taken: " << (aCount + bCount + cCount + dCount + fCount) << endl;    
     cout << "Gradepoint Average = " << setprecision(3) << gradePointAverage << endl << endl;
+}
+
+void sumIntegers() // exercise 5.2a
+{
+    int sum = 0;
+    int number;
+
+    cout << "Enter an integer: ";
+    cin >> number;
+    cout << endl;
+        
+    int median = number / 2;
+    //cout << "median = " << median << endl;
+    
+    //add all numbers between 1 and number
+    if(number%2 == 0)
+        sum = median * (number + 1); // add all numbers between 1 and number, if number is even
+    else
+        sum = median * (number + 2) + 1; // add all numbers between 1 and number, if number is odd
+    
+    cout << "Sum of all numbers between 1 and " << number << " = " << sum << endl << endl;
+    
+    // add all odd numbers between 1 and number
+    int sumOdd = sum - (median * (median + 1));   
+    cout << "Sum of all odd numbers between 1 and " << number << " = " << sumOdd << endl << endl;
+
+    // add all even numbers between 1 and number
+    int sumEven = sum - sumOdd;
+    cout << "Sum of all even numbers between 1 and " << number << " = " << sumEven << endl << endl;
+    
+}
+
+void printValues() // exercise 5.2b
+{
+    // print the value 333.546372 in a 15 character field with precisions of 1, 2, and 3.  
+    // print each number on the same line. left justify each number in it's field.
+
+    double value = 333.546372;
+    cout << left << setw(15) << fixed << setprecision(1) << value << setw(15) << fixed << setprecision(2)
+        << value << setw(15) << fixed << setprecision(3) << value << endl;
+}
+
+void usingPow() // exercise 5.2c
+{
+    cout << fixed << setprecision(2) << setw(10) << pow(2.5, 3) << endl;
 } 
