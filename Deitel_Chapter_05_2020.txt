@@ -18,6 +18,8 @@ using namespace chrono;
 void sumIntegers(); // exercise 5.2a 
 void printValues(); // exercise 5.2b
 void usingPow(); // exercise 5.2c
+void printIntegersWhile(); // exercise 5.2d
+void printIntegersFor(); // exercise 5.2e
 void summingIntegers(); // exercise 5.5
 void averagingIntegers(); // exercise 5.6
 void rectangleXY(); // exercise 5.7
@@ -52,7 +54,9 @@ int main()
 
     //sumIntegers(); // exercise 5.2a 
     //printValues(); // exercise 5.2b
-    usingPow(); // exercise 5.2c
+    //usingPow(); // exercise 5.2c
+    //printIntegersWhile(); // exercise 5.2d
+    printIntegersFor(); // exercise 5.2e
     //summingIntegers(); // exercise 5.5
     //averagingIntegers(); // exercise 5.6    
     //rectangleXY(); // exercise 5.7
@@ -1057,3 +1061,27 @@ void usingPow() // exercise 5.2c
 {
     cout << fixed << setprecision(2) << setw(10) << pow(2.5, 3) << endl;
 } 
+
+void printIntegersWhile() // exercise 5.2d
+{
+    int x = 0;
+    
+    while (x < 20)
+    {
+        ++x;
+        if (x % 5 == 0)
+            cout << x << "\t" << endl;
+        else
+            cout <<  x << "\t";
+    }     
+    cout << endl;
+}
+
+void printIntegersFor() // exercise 5.e
+{
+    for(int x = 1; x <= 20; x++)
+        if (x % 5 == 0)
+            cout << x << "\t" << endl;
+        else
+            cout << x << "\t";
+}
