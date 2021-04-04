@@ -7,11 +7,11 @@
 
 //================================================= function prototypes =========================================//
 
-void gasMileage();																	//  4.13
-void largest();																			//  4.17
-void twoLargest();																	//  4.19
-void pattern1();																		//  4.21
-void pattern2();																		//  4.22
+void gasMileage();					//  4.13
+void largest();						//  4.17
+void twoLargest();					//  4.19
+void pattern1();//  4.21
+void pattern2();//  4.22
 void danglingElse1();//  4.23a
 void danglingElse2();//  4.23b
 void danglingElse3();//  4.24a
